@@ -28,9 +28,10 @@ int main() {
         bool flag2 = true;
         rep (j, 10) {
             if(S[j] == 'o' && !flag[j]) flag2 = false;
-            if(S[i] == 'x' && flag[j]) flag2 = false;
+            if(S[j] == 'x' && flag[j]) flag2 = false;
         }
         ans += flag2;
     }
+    cout << ans << "\n";
     return 0;
 }
