@@ -1,6 +1,6 @@
 /**
  *    author:  ytsmash
- *    created: 13.09.2021 21:02:20
+ *    created: 13.09.2021 21:06:49
  **/
 
 #include <bits/stdc++.h>
@@ -23,18 +23,19 @@ vector<int> devisor(int num) { vector<int> ret; for (int i = 1; i * i <= num; i+
 vector<pair<ll, ll>> prime_factorize(ll N) { vector<pair<ll, ll>> res; for (ll a = 2; a * a <= N; ++a) { if (N % a != 0) continue; ll ex = 0; while (N % a == 0) { ++ex; N /= a; } res.push_back({a, ex}); } if (N != 1) res.push_back({N, 1}); return res; }
 
 int main() {
-    ll A, B, C;
-    cin >> A >> B >> C;
+    int W, H, N;
+    cin >> W >> H >> N;
 
-    if (C % 2 == 0) {
-        if (abs(A) > abs(B)) cout << ">" << "\n";
-        else if (abs(A) == abs(B)) cout << "=" << "\n";
-        else cout << "<" << "\n";
+    int minx = W, miny = H, maxx = 0, maxy = 0;
+    rep(i, N) {
+        int x, y, a;
+        cin >> x >> y >> a;
+        if (a == 1) chmax(maxx, x);
+        else if (a == 2) chmin(minx, x);
+        else if (a == 3) chmax(maxy, y);
+        else if (a == 4) chmin(miny, y);
     }
-    else {
-        if (A > B) cout << ">" << "\n";
-        else if (A == B) cout << "=" << "\n";
-        else cout << "<" << "\n";
-    }
+    if (maxx < minx && maxy < miny) cout << (minx - maxx) * (miny - maxy) << "\n";
+    else cout << 0 << "\n";
     return 0;
 }

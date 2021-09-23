@@ -1,6 +1,6 @@
 /**
  *    author:  ytsmash
- *    created: 13.09.2021 21:02:20
+ *    created: 19.09.2021 08:41:02
  **/
 
 #include <bits/stdc++.h>
@@ -23,18 +23,25 @@ vector<int> devisor(int num) { vector<int> ret; for (int i = 1; i * i <= num; i+
 vector<pair<ll, ll>> prime_factorize(ll N) { vector<pair<ll, ll>> res; for (ll a = 2; a * a <= N; ++a) { if (N % a != 0) continue; ll ex = 0; while (N % a == 0) { ++ex; N /= a; } res.push_back({a, ex}); } if (N != 1) res.push_back({N, 1}); return res; }
 
 int main() {
-    ll A, B, C;
-    cin >> A >> B >> C;
+    string X;
+    int N;
+    cin >> X >> N;
+    vector<string> S(N);
+    rep(i, N) cin >> S[i];
 
-    if (C % 2 == 0) {
-        if (abs(A) > abs(B)) cout << ">" << "\n";
-        else if (abs(A) == abs(B)) cout << "=" << "\n";
-        else cout << "<" << "\n";
+    vector<int> pos(26);
+    rep(i, 26) pos[X[i] - 'a'] = i;
+
+    vector<pair<vector<int>, string>> P(N);
+    rep(i, N) {
+        int L = S[i].size();
+        vector<int> A(L);
+        rep(j, L) {
+            A[j] = pos[S[i][j] - 'a'];
+        }
+        P[i] = make_pair(A, S[i]);
     }
-    else {
-        if (A > B) cout << ">" << "\n";
-        else if (A == B) cout << "=" << "\n";
-        else cout << "<" << "\n";
-    }
+    sort(all(P));
+    rep(i, N) cout << P[i].second << "\n";
     return 0;
 }

@@ -2,12 +2,14 @@
 using namespace std;
 
 typedef long long ll;
-#define rep(i, n) for(int i = 0; i < (n); i++)
+#define rep(i, n) for (int i = 0; i < (n); i++)
 #define all(x) begin(x), end(x)
-template <class T> inline T chmax(T &a, const T b) {
+template <class T>
+inline T chmax(T &a, const T b) {
     return a = (a < b) ? b : a;
 }
-template <class T> inline T chmin(T &a, const T b) {
+template <class T>
+inline T chmin(T &a, const T b) {
     return a = (a > b) ? b : a;
 }
 const long double EPS = 1e-10;
@@ -23,13 +25,12 @@ int main() {
     // 座標圧縮する
     vector<int> ys;
     rep(i, N) { ys.push_back(A[i]); }
-    sort(all(ys));                       // 昇順に並べ替える
-    ys.erase(unique(all(ys)), ys.end()); // ysを重複なしにする
+    sort(all(ys));                        // 昇順に並べ替える
+    ys.erase(unique(all(ys)), ys.end());  // ysを重複なしにする
     rep(i, N) {
         // A[i]が配列ysの何番目にあるか
         A[i] = lower_bound(all(ys), A[i]) - ys.begin();
-    
-    } 
+    }
 
     vector<int> xs;
     rep(i, N) { xs.push_back(B[i]); }

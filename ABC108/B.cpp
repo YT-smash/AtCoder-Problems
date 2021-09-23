@@ -1,6 +1,6 @@
 /**
  *    author:  ytsmash
- *    created: 13.09.2021 21:02:20
+ *    created: 11.09.2021 17:28:31
  **/
 
 #include <bits/stdc++.h>
@@ -23,18 +23,22 @@ vector<int> devisor(int num) { vector<int> ret; for (int i = 1; i * i <= num; i+
 vector<pair<ll, ll>> prime_factorize(ll N) { vector<pair<ll, ll>> res; for (ll a = 2; a * a <= N; ++a) { if (N % a != 0) continue; ll ex = 0; while (N % a == 0) { ++ex; N /= a; } res.push_back({a, ex}); } if (N != 1) res.push_back({N, 1}); return res; }
 
 int main() {
-    ll A, B, C;
-    cin >> A >> B >> C;
+    int x1, y1, x2, y2;
+    cin >> x1 >> y1 >> x2 >> y2;
 
-    if (C % 2 == 0) {
-        if (abs(A) > abs(B)) cout << ">" << "\n";
-        else if (abs(A) == abs(B)) cout << "=" << "\n";
-        else cout << "<" << "\n";
+    int dx = x2 - x1, dy = y2 - y1;
+    int x = x2, y = y2;
+
+    rep(i, 2) {
+        int _dx = -dy;
+        int _dy = dx;
+        dx = _dx;
+        dy = _dy;
+
+        x += dx;
+        y += dy;
+        cout << x << " " << y << " ";
     }
-    else {
-        if (A > B) cout << ">" << "\n";
-        else if (A == B) cout << "=" << "\n";
-        else cout << "<" << "\n";
-    }
+    cout << "\n";
     return 0;
 }
